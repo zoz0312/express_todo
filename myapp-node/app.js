@@ -11,6 +11,9 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+var sequelize = require('./models').sequelize;   // mysql 시퀄라이저 모델
+sequelize.sync();    //서버가 실행될때 시퀄라이저의 스키마를 DB에 적용시킨다.
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
