@@ -1,9 +1,14 @@
+const { libs } = require('../../lib');
+const lib = new libs();
+
+const { TodoCard } = require('../../models');
+
 const todoCVali = (req, res, next) => {
-	const title = req.body('title');
-	const contents = req.body('contents');
-	const dueDate = req.body('dueDate');
-	const type = req.body('type');
-	const depth = req.body('depth');
+	const title = req.body.title;
+	const contents = req.body.contents;
+	const dueDate = req.body.dueDate;
+	const type = req.body.type;
+	const depth = req.body.depth;
 
 	let flag = false;
 
@@ -19,35 +24,37 @@ const todoCVali = (req, res, next) => {
 	if (!!type == false || typeof type !== 'string') {
 		flag = true;
 	}
-	if (!!depth == false || typeof depth !== 'number') {
+	if (typeof depth !== 'number') {
 		flag = true;
 	}
 
 	if (flag) {
 		lib.errDesc = 'Type Error';
-		res.send(lib.resData());
+		res.send(lib.resData);
 	} else {
 		next();
 	}
 };
 
-const todoC = (req, res, next) => {
+const todoC = async (req, res, next) => {
 	const data = {
-		title: req.body('title'),
-		contents: req.body('contents'),
-		dueDate: req.body('dueDate'),
-		type: req.body('type'),
-		depth: req.body('depth'),
+		title: req.body.title,
+		contents: req.body.contents,
+		dueDate: req.body.dueDate,
+		type: req.body.type,
+		depth: req.body.depth,
 		createDate: new Date(),
 		updateDate: new Date(),
 	}
 	try {
+		await TodoCard.create(data);
 		lib.success = true;
-		lib.data = await TodoCard.create(data);
+		res.send(lib.resData);
 	} catch (e) {
-		lib.errDesc = e;
+		lib.errDesc = 'Insert Error';
+		res.send(lib.resData);
+	} finally {
 	}
-	res.send(lib.resData());
 };
 
 

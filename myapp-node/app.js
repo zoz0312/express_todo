@@ -8,6 +8,7 @@ const history = require('connect-history-api-fallback');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const todoRouter = require('./routes/todo');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(history());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/todo', todoRouter);
 
 /* history URL DEST */
 app.get('/index.html', function(req, res, next) {

@@ -4,8 +4,6 @@ const router = express.Router();
 const { libs } = require('../../lib');
 const lib = new libs();
 
-const { TodoCard } = require('../models');
-
 const { todoCVali, todoC } = require('./create');
 
 router.post('/selectAll', async (req, res, next) => {
