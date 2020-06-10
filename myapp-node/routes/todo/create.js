@@ -49,11 +49,10 @@ const todoC = async (req, res, next) => {
 	try {
 		await TodoCard.create(data);
 		lib.success = true;
-		res.send(lib.resData);
 	} catch (e) {
 		lib.errDesc = 'Insert Error';
-		res.send(lib.resData);
 	} finally {
+		res.send(lib.resData);
 	}
 };
 

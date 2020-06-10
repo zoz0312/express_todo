@@ -4,18 +4,11 @@ const router = express.Router();
 const { libs } = require('../../lib');
 const lib = new libs();
 
+const { todoSVali, todoS } = require('./select');
 const { todoCVali, todoC } = require('./create');
 
-router.post('/selectAll', async (req, res, next) => {
-	try {
-		lib.success = true;
-		lib.data = await TodoCard.find({});
-	} catch (e) {
-		lib.errDesc = e;
-	}
-	res.send(lib.resData());
-});
-
+router.post('/select', todoSVali);
+router.post('/select', todoS);
 router.post('/create', todoCVali);
 router.post('/create', todoC);
 

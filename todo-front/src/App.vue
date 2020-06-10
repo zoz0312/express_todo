@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Top />
+		<SelectTodo />
   </div>
 </template>
 
 <script>
 import Top from './components/Top.vue'
+import SelectTodo from './components/SelectTodo.vue'
 
 export default {
   name: 'App',
   components: {
-		Top
+		Top,
+		SelectTodo,
   }
 }
 </script>
