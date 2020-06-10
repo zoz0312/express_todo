@@ -3,7 +3,8 @@ const lib = new libs();
 
 const { TodoCard } = require('../../models');
 
-const todoCVali = (req, res, next) => {
+const todoUVali = (req, res, next) => {
+	const id = req.body.id;
 	const title = req.body.title;
 	const contents = req.body.contents;
 	const dueDate = req.body.dueDate;
@@ -12,6 +13,9 @@ const todoCVali = (req, res, next) => {
 
 	let flag = false;
 
+	if (!lib.isNum(id)) {
+		flag = true;
+	}
 	if (!lib.isStr(title)) {
 		flag = true;
 	}
@@ -36,21 +40,21 @@ const todoCVali = (req, res, next) => {
 	}
 };
 
-const todoC = async (req, res, next) => {
+const todoU = async (req, res, next) => {
+	const id = req.body.title;
 	const data = {
 		title: req.body.title,
 		contents: req.body.contents,
 		dueDate: req.body.dueDate,
 		type: req.body.type,
 		depth: req.body.depth,
-		createDate: new Date(),
 		updateDate: new Date(),
 	}
 	try {
-		await TodoCard.create(data);
+		await TodoCard.update(data, { where : { id } });
 		lib.success = true;
 	} catch (e) {
-		lib.errDesc = 'Insert Error';
+		lib.errDesc = 'Update Error';
 	} finally {
 		res.send(lib.resData);
 	}
@@ -58,6 +62,6 @@ const todoC = async (req, res, next) => {
 
 
 module.exports = {
-	todoCVali,
-	todoC,
+	todoUVali,
+	todoU,
 };
