@@ -5,8 +5,9 @@
 				<b-col sm="3"
 					v-for="(opt) in options"
 					v-bind:key="opt.value">
-					{{ opt }}
+					<b-alert show variant="primary">{{ opt.text }}</b-alert>
 					<div
+						class="mb-3"
 						v-for="(item, idx) in listType[opt.value]"
 						v-bind:key="idx"
 						>

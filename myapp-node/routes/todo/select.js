@@ -28,7 +28,7 @@ const todoS = async (req, res, next) => {
 	*/
 	try {
 		const data = await TodoCard.findAll({
-			attributes: ['id', 'title', 'contents', 'depth', 'type', 'createDate', 'dueDate']
+			attributes: ['id', 'title', 'contents', 'depth', 'type', 'createDate', 'dueDate', 'updateDate']
 		});
 		lib.data = { items: lib.findParse(data) }
 		lib.success = true;

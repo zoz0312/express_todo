@@ -37,14 +37,15 @@ const todoCVali = (req, res, next) => {
 };
 
 const todoC = async (req, res, next) => {
+	const curDate = new Date();
 	const data = {
 		title: req.body.title,
 		contents: req.body.contents,
 		dueDate: req.body.dueDate,
 		type: req.body.type,
 		depth: req.body.depth,
-		createDate: new Date(),
-		updateDate: new Date(),
+		createDate: curDate,
+		updateDate: curDate,
 	}
 	try {
 		await TodoCard.create(data);
