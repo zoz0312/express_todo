@@ -2,7 +2,6 @@
   <div class="create-card">
 		<TodoCardDetail
 			type="insert"
-	 		
 		/>
   </div>
 </template>

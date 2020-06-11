@@ -52,6 +52,14 @@ class libs {
 		}
 		return Array.isArray(val);
 	}
+	findParse (obj) {
+		if (!this.isObj(obj)) {
+			return [];
+		}
+		return Object.keys(obj).map((idx) => {
+			return obj[idx].dataValues;
+		});
+	}
 }
 
 module.exports = {

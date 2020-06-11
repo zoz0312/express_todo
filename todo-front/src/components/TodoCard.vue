@@ -1,15 +1,37 @@
 <template>
-
+	<b-card :header="item.title" class="text-center" :bg-variant="bgVal">
+		<b-card-text>
+			{{ item.contents }}
+			{{ item.createDate }}
+			{{ item.updateDate }}
+			{{ item.dueDate }}
+		</b-card-text>
+	</b-card>
 </template>
 
 <script>
 /*eslint no-unused-vars: "error"*/
-import axios from 'axios';
-
 export default {
-  name: 'SelectTodo',
+  name: 'TodoCard',
   props: {
-    msg: String
+    msg: String,
+		bgVal: {
+			type: String,
+			default: ''
+		},
+		item: {
+			type: Object,
+			default: () => {
+				return {
+					id: 0,
+					title: '',
+					type: '',
+					createDate: '',
+					updateDate: '',
+					dueDate: '',
+				}
+			}
+		},
   },
 	components: {
 	},

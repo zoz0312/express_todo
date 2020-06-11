@@ -9,7 +9,7 @@
 import CreateTodo from './CreateTodo.vue'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Top',
 	components: {
 		CreateTodo,
 	},

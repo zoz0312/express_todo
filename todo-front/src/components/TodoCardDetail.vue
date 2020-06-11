@@ -1,6 +1,5 @@
 <template>
   <div class="create-card">
-		ITEM {{ item }}
 		<b-card
 			title="Card Title"
 			img-src="https://picsum.photos/600/300/?image=25"

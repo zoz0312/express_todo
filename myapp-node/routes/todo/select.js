@@ -27,9 +27,10 @@ const todoS = async (req, res, next) => {
 	}
 	*/
 	try {
-		lib.data = await TodoCard.findAll({
+		const data = await TodoCard.findAll({
 			attributes: ['id', 'title', 'contents', 'depth', 'type', 'createDate', 'dueDate']
 		});
+		lib.data = { items: lib.findParse(data) }
 		lib.success = true;
 	} catch (e) {
 		lib.errDesc = 'Select Error';
