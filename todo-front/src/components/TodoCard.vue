@@ -1,23 +1,17 @@
 <template>
-  <div class="create-card">
-		<TodoCardDetail
-			type="insert"
-	 		
-		/>
-  </div>
+
 </template>
 
 <script>
 /*eslint no-unused-vars: "error"*/
-import TodoCardDetail from './TodoCardDetail.vue';
+import axios from 'axios';
 
 export default {
-  name: 'CreateTodo',
+  name: 'SelectTodo',
   props: {
     msg: String
   },
 	components: {
-		TodoCardDetail
 	},
 	data () {
 		return {
@@ -31,7 +25,4 @@ export default {
 </script>
 
 <style scoped>
-.create-card {
-
-}
 </style>

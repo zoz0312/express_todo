@@ -30,7 +30,7 @@ class libs {
 		if (typeof val !== 'string') {
 			return false;
 		}
-		if (!!val) {
+		if (!!val === false) {
 			return false;
 		}
 		return true;
@@ -40,7 +40,7 @@ class libs {
 		if (typeof val !== 'object') {
 			return false;
 		}
-		if (!!val) {
+		if (!!val === false) {
 			return false;
 		}
 		return true;

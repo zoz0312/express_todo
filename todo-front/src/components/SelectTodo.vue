@@ -1,29 +1,27 @@
 <template>
   <div class="select-view">
 		{{ list }}
-		<b-card
-			title="Card Title"
-			img-src="https://picsum.photos/600/300/?image=25"
-			img-alt="Image"
-			img-top
-			tag="article"
-			style="max-width: 20rem;"
-			class="mb-2"
-		>
-			<b-card-text>
-				<b-form-input v-model="title" placeholder="제목을 입력해주세요."></b-form-input>
-				<b-form-textarea
-					id="textarea"
-					v-model="contents"
-					placeholder="내용을 입력해주세요."
-					rows="3"
-					max-rows="6"
-				></b-form-textarea>
-					<b-form-datepicker id="example-datepicker" v-model="dueDate" class="mb-2"></b-form-datepicker>
-					<b-form-select v-model="type" :options="options"></b-form-select>
-			</b-card-text>
-			<b-button href="#" variant="primary" @click="insertTodo()">Insert</b-button>
-		</b-card>
+		<b-container fluid>
+			<b-row>
+				<b-col sm="3">
+					<div>
+						
+					</div>
+				</b-col><b-col sm="3">
+					<div>
+
+					</div>
+				</b-col><b-col sm="3">
+					<div>
+
+					</div>
+				</b-col><b-col sm="3">
+					<div>
+
+					</div>
+				</b-col>
+			</b-row>
+		</b-container>
   </div>
 </template>
 
@@ -61,6 +59,9 @@ export default {
 		async selectTodo () {
 			try {
 				const { data } = await axios.post('/todo/select');
+				for (let i=0; i<data.length; i++) {
+					console.log(data[i]);
+				}
 				this.list = data;
 			} catch (e) {
 				console.log('err', e);
