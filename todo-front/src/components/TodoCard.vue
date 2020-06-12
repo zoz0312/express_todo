@@ -1,8 +1,9 @@
 <template>
 	<b-card
 		:header="item.title"
-		class="text-center"
+		class="text-center todo-card"
 		:bg-variant="bgVal"
+		@click="showDetail()"
 		no-body>
 		<b-card-body>
 			<b-card-text>{{ item.contents }}</b-card-text>
@@ -70,9 +71,18 @@ export default {
 			const obj = new Date(itemDate.split('.')[0]);
 			return `${obj.getFullYear()}년 ${obj.getMonth() + 1}월 ${obj.getDate()}일`;
 		},
+		showDetail () {
+			this.$store.dispatch('update_card', {
+				viewType: 'fix',
+				...this.item
+			});
+		}
 	}
 }
 </script>
 
 <style scoped>
+.todo-card {
+	cursor: pointer;
+}
 </style>

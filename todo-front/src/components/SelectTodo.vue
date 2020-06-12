@@ -20,6 +20,7 @@
 				</b-col>
 			</b-row>
 		</b-container>
+		{{ TEST }}
   </div>
 </template>
 
@@ -39,6 +40,7 @@ export default {
 	},
 	data () {
 		return {
+			TEST: '123',
 			curDate: '',
 			options: [
 				{ value: 'assign', text: '할당' },

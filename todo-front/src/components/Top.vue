@@ -1,17 +1,19 @@
 <template>
   <div>
-		<b-button variant="primary" @click="createView = !createView">추가하기</b-button>
-		<CreateTodo v-show="createView"/>
+		<b-button variant="primary" @click="btnAdd()">추가하기</b-button>
+		<TodoCardDetail
+			v-show="$store.state.todo.view"
+		/>
   </div>
 </template>
 
 <script>
-import CreateTodo from './CreateTodo.vue'
+import TodoCardDetail from './TodoCardDetail.vue';
 
 export default {
   name: 'Top',
 	components: {
-		CreateTodo,
+		TodoCardDetail,
 	},
 	data () {
 		return {
@@ -20,6 +22,11 @@ export default {
 	},
 	mounted () {
 	},
+	methods: {
+		btnAdd () {
+			this.$store.dispatch('view_type', !this.$store.state.todo.view);
+		}
+	}
 }
 </script>
 

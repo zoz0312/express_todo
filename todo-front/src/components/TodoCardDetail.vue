@@ -1,27 +1,23 @@
 <template>
   <div class="create-card">
 		<b-card
-			title="Card Title"
-			img-src="https://picsum.photos/600/300/?image=25"
-			img-alt="Image"
-			img-top
-			tag="article"
+			title="TODO 작성"
 			style="max-width: 20rem;"
 			class="mb-2"
 		>
 			<b-card-text>
-				<b-form-input v-model="item.title" placeholder="제목을 입력해주세요."></b-form-input>
+				<b-form-input v-model="$store.state.todo.title" placeholder="제목을 입력해주세요."></b-form-input>
 				<b-form-textarea
 					id="textarea"
-					v-model="item.contents"
+					v-model="$store.state.todo.contents"
 					placeholder="내용을 입력해주세요."
 					rows="3"
 					max-rows="6"
 				></b-form-textarea>
-					<b-form-datepicker id="example-datepicker" v-model="item.dueDate" class="mb-2"></b-form-datepicker>
-					<b-form-select v-model="item.type" :options="options"></b-form-select>
+					<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
+					<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
 			</b-card-text>
-			<b-button href="#" variant="primary" @click="todoSubmit()">{{ btnName }}</b-button>
+			<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType }}</b-button>
 		</b-card>
   </div>
 </template>
@@ -33,10 +29,6 @@ import axios from 'axios';
 export default {
   name: 'TodoCardDetail',
   props: {
-		type: {
-			type: String,
-			default: 'insert'
-		},
 		item: {
 			type: Object,
 			default: () => {
@@ -64,18 +56,16 @@ export default {
 		}
 	},
 	mounted () {
-		if (this.type === 'insert') {
-			this.btnName = 'Insert';
-		}
 	},
 	methods: {
 		async todoSubmit () {
+			const st = this.$store.state.todo;
 			const data = {
-				title: this.item.title,
-				contents: this.item.contents,
-				dueDate: this.item.dueDate,
-				type: this.item.type,
-				depth: this.item.depth
+				title: st.title,
+				contents: st.contents,
+				dueDate: st.dueDate,
+				type: st.type,
+				depth: st.depth
 			}
 			if (data.title === '') {
 				alert('제목을 입력해주세요.');
@@ -90,7 +80,7 @@ export default {
 				return;
 			}
 			try {
-				if (this.type === 'insert') {
+				if (this.$store.state.todo.viewType === 'insert') {
 					console.log(await axios.post('/todo/create', data));
 				}
 			} catch (e) {
