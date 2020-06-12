@@ -14,6 +14,7 @@
 						<TodoCard
 							v-if="opt.value === item.type"
 							:item="item"
+							:bgVal="bgVal(item.type, item.dueDate)"
 						/>
 					</div>
 				</b-col>
@@ -38,11 +39,7 @@ export default {
 	},
 	data () {
 		return {
-			title: '',
-			contents: '',
-			dueDate: '',
-			type: 'assign',
-			depth: 0,
+			curDate: '',
 			options: [
 				{ value: 'assign', text: '할당' },
 				{ value: 'ongoing', text: '진행중' },
@@ -59,8 +56,17 @@ export default {
 	},
 	mounted () {
 		this.selectTodo();
+		this.curDate = new Date();
 	},
 	methods: {
+		bgVal (type, due) {
+			if (type === 'assign' || type === 'ongoing') {
+				if (this.curDate > new Date(due)) {
+					return 'warning';
+				}
+			}
+			return '';
+		},
 		async selectTodo () {
 			try {
 				const { data } = await axios.post('/todo/select');

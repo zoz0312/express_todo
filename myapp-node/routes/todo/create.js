@@ -38,6 +38,7 @@ const todoCVali = (req, res, next) => {
 
 const todoC = async (req, res, next) => {
 	const curDate = new Date();
+	console.log('curDate', curDate);
 	const data = {
 		title: req.body.title,
 		contents: req.body.contents,
