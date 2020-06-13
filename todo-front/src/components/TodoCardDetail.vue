@@ -17,7 +17,7 @@
 					<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
 					<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
 			</b-card-text>
-			<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType }}</b-button>
+			<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType === 'insert' ? '생성' : '수정' }}</b-button>
 		</b-card>
   </div>
 </template>

@@ -24,7 +24,7 @@ export default {
 	},
 	methods: {
 		btnAdd () {
-			this.$store.dispatch('view_type', !this.$store.state.todo.view);
+			this.$store.dispatch('insert_card');
 		}
 	}
 }

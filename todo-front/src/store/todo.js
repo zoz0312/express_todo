@@ -34,6 +34,7 @@ const actions = {
 	insert_card ({ commit }) {
 		commit('UPDATE_CARD',{
 			viewType: 'insert',
+			view: true,
 			title: '',
 			contents: '',
 			dueDate: '',
