@@ -33,6 +33,7 @@ export default {
 			type: Object,
 			default: () => {
 				return {
+					id: '',
 					title: '',
 					contents: '',
 					dueDate: '',
@@ -61,6 +62,7 @@ export default {
 		async todoSubmit () {
 			const st = this.$store.state.todo;
 			const data = {
+				id: st.id,
 				title: st.title,
 				contents: st.contents,
 				dueDate: st.dueDate,
@@ -80,8 +82,11 @@ export default {
 				return;
 			}
 			try {
-				if (this.$store.state.todo.viewType === 'insert') {
-					console.log(await axios.post('/todo/create', data));
+				const viewType = this.$store.state.todo.viewType;
+				if (viewType === 'insert') {
+					await axios.post('/todo/create', data);
+				} else if (viewType === 'fix') {
+					await axios.post('/todo/update', data);
 				}
 			} catch (e) {
 				console.log('err', e);

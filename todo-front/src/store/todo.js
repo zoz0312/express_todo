@@ -1,4 +1,5 @@
 const initialState = {
+	id: 0,
 	viewType: 'insert',
 	view: false,
 	title: '',
@@ -12,6 +13,7 @@ const initialState = {
 
 const mutations = {
 	UPDATE_CARD (state, obj) {
+		state.id = obj.id;
 		state.viewType = obj.viewType;
 		state.view = true;
 		state.title = obj.title;
@@ -33,6 +35,7 @@ const actions = {
 	},
 	insert_card ({ commit }) {
 		commit('UPDATE_CARD',{
+			id: 0,
 			viewType: 'insert',
 			view: true,
 			title: '',

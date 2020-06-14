@@ -41,8 +41,8 @@ const todoUVali = (req, res, next) => {
 };
 
 const todoU = async (req, res, next) => {
-	const id = req.body.title;
 	const data = {
+		id: req.body.id,
 		title: req.body.title,
 		contents: req.body.contents,
 		dueDate: req.body.dueDate,
@@ -51,7 +51,11 @@ const todoU = async (req, res, next) => {
 		updateDate: new Date(),
 	}
 	try {
-		await TodoCard.update(data, { where : { id } });
+		await TodoCard.update(data, {
+			where: {
+				id: data.id
+			}
+		});
 		lib.success = true;
 	} catch (e) {
 		lib.errDesc = 'Update Error';

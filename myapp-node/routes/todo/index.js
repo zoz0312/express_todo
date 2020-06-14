@@ -13,8 +13,8 @@ router.post('/select', todoSVali);
 router.post('/select', todoS);
 router.post('/create', todoCVali);
 router.post('/create', todoC);
-router.post('/update', todoDVali);
-router.post('/update', todoD);
+router.post('/update', todoUVali);
+router.post('/update', todoU);
 router.post('/delete', todoDVali);
 router.post('/delete', todoD);
 
