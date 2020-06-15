@@ -55,6 +55,7 @@
 <script>
 /*eslint no-unused-vars: "error"*/
 import axios from 'axios';
+import CommonMixin from '../mixin';
 
 export default {
   name: 'TodoCard',
@@ -78,6 +79,7 @@ export default {
 			}
 		},
   },
+	mixins: [ CommonMixin ],
 	components: {
 	},
 	data () {
@@ -88,13 +90,6 @@ export default {
 	mounted () {
 	},
 	methods: {
-		timeParser (itemDate) {
-			if (!!itemDate === false || itemDate === '') {
-				return 'X';
-			}
-			const obj = new Date(itemDate.split('.')[0]);
-			return `${obj.getFullYear()}년 ${obj.getMonth() + 1}월 ${obj.getDate()}일`;
-		},
 		showDetail () {
 			this.$store.dispatch('update_card', {
 				viewType: 'fix',

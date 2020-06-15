@@ -10,7 +10,14 @@ export default {
 				comments,
 				style
 			});
-		}
+		},
+		timeParser (itemDate) {
+			if (!!itemDate === false || itemDate === '') {
+				return 'X';
+			}
+			const obj = new Date(itemDate.split('.')[0]);
+			return `${obj.getFullYear()}년 ${obj.getMonth() + 1}월 ${obj.getDate()}일`;
+		},
 	}
 }
 

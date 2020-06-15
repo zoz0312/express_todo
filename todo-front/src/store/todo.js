@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const initialState = {
 	id: 0,
 	viewType: 'insert',
@@ -9,9 +11,21 @@ const initialState = {
 	updateDate: '',
 	type: 'assign',
 	depth: 0,
+	itemList: {
+		assign: [],
+		ongoing: [],
+		complete: [],
+		holding: []
+	}
 }
 
 const mutations = {
+	INSERT_LIST (state, obj) {
+		state.itemList.assign = Object.assign([], obj.assign);
+		state.itemList.ongoing = Object.assign([], obj.ongoing);
+		state.itemList.complete = Object.assign([], obj.complete);
+		state.itemList.holding = Object.assign([], obj.holding);
+	},
 	UPDATE_CARD (state, obj) {
 		state.id = obj.id;
 		state.viewType = obj.viewType;
@@ -33,6 +47,24 @@ const mutations = {
 }
 
 const actions = {
+	async get_todos ({ commit }) {
+		try {
+			const { data } = await axios.post('/todo/select');
+			const items = data.data.items;
+			const listType = {
+				assign: [],
+				ongoing: [],
+				complete: [],
+				holding: []
+			};
+			for (let i=0; i<items.length; i++) {
+				listType[items[i].type].push(items[i]);
+			}
+			commit('INSERT_LIST', listType);
+		} catch (e) {
+			console.log('err', e);
+		}
+	},
 	update_card ({ commit }, data) {
 		commit('UPDATE_CARD', data);
 	},
