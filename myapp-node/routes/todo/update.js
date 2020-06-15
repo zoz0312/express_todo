@@ -22,7 +22,7 @@ const todoUVali = (req, res, next) => {
 	if (!lib.isStr(contents)) {
 		flag = true;
 	}
-	if (!lib.isStr(dueDate)) {
+	if (!lib.isStr(dueDate) && dueDate != '') {
 		flag = true;
 	}
 	if (!lib.isStr(type)) {
