@@ -8,7 +8,7 @@
 					<b-alert show variant="primary">{{ opt.text }}</b-alert>
 					<div
 						class="mb-3"
-						v-for="(item, idx) in listType[opt.value]"
+						v-for="(item, idx) in $store.state.todo.itemList[opt.value]"
 						v-bind:key="idx"
 						>
 						<TodoCard
@@ -25,8 +25,6 @@
 
 <script>
 /*eslint no-unused-vars: "error"*/
-import axios from 'axios';
-
 import TodoCard from './TodoCard.vue';
 
 export default {
@@ -46,16 +44,10 @@ export default {
 				{ value: 'complete', text: '완료' },
 				{ value: 'holding', text: '보류' },
 			],
-			listType: {
-				assign: [],
-				ongoing: [],
-				complete: [],
-				holding: []
-			},
 		}
 	},
 	mounted () {
-		this.selectTodo();
+		this.$store.dispatch('get_todos');
 		this.curDate = new Date();
 	},
 	methods: {
@@ -66,17 +58,6 @@ export default {
 				}
 			}
 			return '';
-		},
-		async selectTodo () {
-			try {
-				const { data } = await axios.post('/todo/select');
-				const items = data.data.items;
-				for (let i=0; i<items.length; i++) {
-					this.listType[items[i].type].push(items[i]);
-				}
-			} catch (e) {
-				console.log('err', e);
-			}
 		},
 	}
 }

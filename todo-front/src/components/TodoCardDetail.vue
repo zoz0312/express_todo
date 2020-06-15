@@ -130,6 +130,8 @@ export default {
 					await axios.post('/todo/update', data);
 					this._alert(`수정 되었습니다.`);
 				}
+				this.$store.dispatch('get_todos');
+				this.$store.dispatch('get_alram');
 			} catch (e) {
 				console.log('err', e);
 			}

@@ -21,10 +21,12 @@ const initialState = {
 
 const mutations = {
 	INSERT_LIST (state, obj) {
+		console.log('insert_list', obj);
 		state.itemList.assign = Object.assign([], obj.assign);
 		state.itemList.ongoing = Object.assign([], obj.ongoing);
 		state.itemList.complete = Object.assign([], obj.complete);
 		state.itemList.holding = Object.assign([], obj.holding);
+		console.log('insert_list2', state);
 	},
 	UPDATE_CARD (state, obj) {
 		state.id = obj.id;
