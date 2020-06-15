@@ -35,6 +35,7 @@
 <script>
 /*eslint no-unused-vars: "error"*/
 import axios from 'axios';
+import CommonMixin from '../mixin';
 
 export default {
   name: 'TodoCardDetail',
@@ -53,6 +54,7 @@ export default {
 			}
 		},
   },
+	mixins: [ CommonMixin ],
 	components: {
 	},
 	data () {
@@ -95,8 +97,10 @@ export default {
 				const viewType = this.$store.state.todo.viewType;
 				if (viewType === 'insert') {
 					await axios.post('/todo/create', data);
+					this._alert(`생성 되었습니다.`);
 				} else if (viewType === 'fix') {
 					await axios.post('/todo/update', data);
+					this._alert(`수정 되었습니다.`);
 				}
 			} catch (e) {
 				console.log('err', e);

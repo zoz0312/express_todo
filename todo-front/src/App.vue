@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+		<Alert />
     <Top />
 		<SelectTodo />
   </div>
@@ -8,12 +9,14 @@
 <script>
 import Top from './components/Top.vue'
 import SelectTodo from './components/SelectTodo.vue'
+import Alert from './components/Alert.vue'
 
 export default {
   name: 'App',
   components: {
 		Top,
 		SelectTodo,
+		Alert,
   }
 }
 </script>
