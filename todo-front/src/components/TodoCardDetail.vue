@@ -1,25 +1,33 @@
 <template>
-  <div class="create-card">
-		<b-card
-			title="TODO 작성"
-			style="max-width: 20rem;"
-			class="mb-2"
-		>
-			<b-card-text>
-				<b-form-input v-model="$store.state.todo.title" placeholder="제목을 입력해주세요."></b-form-input>
-				<b-form-textarea
-					id="textarea"
-					v-model="$store.state.todo.contents"
-					placeholder="내용을 입력해주세요."
-					rows="3"
-					max-rows="6"
-				></b-form-textarea>
-					<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
-					<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
-			</b-card-text>
-			<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType === 'insert' ? '생성' : '수정' }}</b-button>
-		</b-card>
-  </div>
+	<b-modal
+		id="detail-modal"
+		v-model="$store.state.todo.view"
+		hide-backdrop
+		content-class="shadow"
+		title="TODO 작성">
+		<b-card-text>
+			<b-form-input v-model="$store.state.todo.title" placeholder="제목을 입력해주세요."></b-form-input>
+			<b-form-textarea
+				id="textarea"
+				v-model="$store.state.todo.contents"
+				placeholder="내용을 입력해주세요."
+				rows="3"
+				max-rows="6"
+			></b-form-textarea>
+			<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
+			<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
+		</b-card-text>
+		<template v-slot:modal-footer>
+			<div class="w-100 float-right">
+				<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType === 'insert' ? '생성' : '수정' }}</b-button>
+				<b-button
+					variant="primary"
+					@click="$store.dispatch('view_type', false)">
+					Close
+				</b-button>
+			</div>
+		</template>
+  </b-modal>
 </template>
 
 <script>

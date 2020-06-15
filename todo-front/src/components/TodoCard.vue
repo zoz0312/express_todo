@@ -1,12 +1,31 @@
 <template>
 	<b-card
-		:header="item.title"
 		class="text-center todo-card"
 		:bg-variant="bgVal"
 		@click="showDetail()"
 		no-body>
+    <template v-slot:header>
+			<b-row>
+				<b-col cols="9" class="mr-auto">
+					<h4 class="mb-0">
+						{{ item.title }}
+					</h4>
+				</b-col>
+				<b-col cols="3" class="">
+					<b-icon
+						font-scale="2"
+						:icon="iconStr"
+						@mouseover="iconStr = 'x-square-fill'"
+						@mouseout="iconStr = 'x-square'"
+						@click="deleteTodo()">
+					</b-icon>
+				</b-col>
+			</b-row>
+    </template>
 		<b-card-body>
-			<b-card-text>{{ item.contents }}</b-card-text>
+			<b-card-text>
+				{{ item.contents }}
+			</b-card-text>
     </b-card-body>
 		<b-list-group flush>
       <b-list-group-item>
@@ -33,6 +52,8 @@
 
 <script>
 /*eslint no-unused-vars: "error"*/
+import axios from 'axios';
+
 export default {
   name: 'TodoCard',
   props: {
@@ -59,6 +80,7 @@ export default {
 	},
 	data () {
 		return {
+			iconStr: 'x-square'
 		}
 	},
 	mounted () {
@@ -76,6 +98,16 @@ export default {
 				viewType: 'fix',
 				...this.item
 			});
+		},
+		async deleteTodo () {
+			if (!confirm('Is Remove?')) {
+				return;
+			}
+			try {
+				await axios.post('/todo/delete', { id: this.item.id });
+			} catch (e) {
+				console.log('err', e);
+			}
 		}
 	}
 }

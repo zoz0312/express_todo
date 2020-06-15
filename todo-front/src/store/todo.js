@@ -49,7 +49,7 @@ const actions = {
 	},
 	view_type ({ commit }, type) {
 		commit('VIEW_TYPE', type);
-	}
+	},
 }
 
 const getters = {
