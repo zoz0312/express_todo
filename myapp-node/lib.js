@@ -1,11 +1,15 @@
 'use strict'
 
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
+
 class libs {
 	constructor () {
 		this.data = {};
 		this.desc = '';
 		this.errDesc = '';
 		this.success = false;
+		this.Op = Op;
 	}
 
 	get resData () {
