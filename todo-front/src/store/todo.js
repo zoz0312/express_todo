@@ -26,6 +26,9 @@ const mutations = {
 	},
 	VIEW_TYPE (state, type) {
 		state.view = type;
+	},
+	CLEAR_DUE_DATE (state) {
+		state.dueDate = '';
 	}
 }
 
@@ -50,6 +53,9 @@ const actions = {
 	view_type ({ commit }, type) {
 		commit('VIEW_TYPE', type);
 	},
+	clear_due_date ({ commit }) {
+		commit('CLEAR_DUE_DATE')
+	}
 }
 
 const getters = {

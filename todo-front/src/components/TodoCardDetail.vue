@@ -7,13 +7,13 @@
 		title="TODO 작성">
 		<b-card-text>
 			<b-row class="mb-2">
-				<b-col sm="3">제목</b-col>
+				<b-col sm="3" class="my-auto">제목</b-col>
 				<b-col sm="9">
 					<b-form-input v-model="$store.state.todo.title" placeholder="제목을 입력해주세요."></b-form-input>
 				</b-col>
 			</b-row>
 			<b-row class="mb-2">
-				<b-col sm="3">내용</b-col>
+				<b-col sm="3" class="my-auto">내용</b-col>
 				<b-col sm="9">
 					<b-form-textarea
 						id="textarea"
@@ -25,19 +25,23 @@
 				</b-col>
 			</b-row>
 			<b-row class="mb-2">
-				<b-col sm="3">마감 기한</b-col>
+				<b-col sm="3" class="my-auto">마감 기한</b-col>
 				<b-col sm="9">
-					<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
+					<div class="due-date">
+						<b-form-datepicker id="due-date-picker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
+					</div><div class="btn-due-date">
+						<button type="button" aria-label="remove" class="close" @click="$store.dispatch('clear_due_date')">×</button>
+					</div>
 				</b-col>
 			</b-row>
 			<b-row class="mb-2">
-				<b-col sm="3">상태</b-col>
+				<b-col sm="3" class="my-auto">상태</b-col>
 				<b-col sm="9">
 					<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
 				</b-col>
 			</b-row>
 			<b-row>
-				<b-col sm="3">우선순위</b-col>
+				<b-col sm="3" class="my-auto">우선순위</b-col>
 				<b-col sm="9">
 					<b-form-input id="range-1" v-model="$store.state.todo.depth" type="range" min="0" max="2"></b-form-input>
 					{{ depOptions[$store.state.todo.depth] }}
@@ -107,7 +111,7 @@ export default {
 				contents: st.contents,
 				dueDate: st.dueDate,
 				type: st.type,
-				depth: st.depth
+				depth: parseInt(st.depth, 10),
 			}
 			if (data.title === '') {
 				alert('제목을 입력해주세요.');
@@ -115,10 +119,6 @@ export default {
 			}
 			if (data.contents === '') {
 				alert('내용을 입력해주세요.');
-				return;
-			}
-			if (data.dueDate === '') {
-				alert('날짜를 선택해주세요.');
 				return;
 			}
 			try {
@@ -139,4 +139,16 @@ export default {
 </script>
 
 <style scoped>
+.due-date {
+	display: inline-block;
+	width: 90%;
+}
+.btn-due-date {
+	display: inline-block;
+	width: 10%;
+	height: 40%;
+}
+.btn-due-date > button {
+	margin-right: 20%;
+}
 </style>
