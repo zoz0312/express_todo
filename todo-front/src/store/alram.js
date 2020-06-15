@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
+	viewAlram: false,
 	dueCnt: 0,
 	itemList: [],
 }
@@ -10,6 +11,9 @@ const mutations = {
 		state.dueCnt = obj.count;
 		state.itemList = Object.assign([], obj.itemList);
 	},
+	IS_ALRAM_SHOW (state) {
+		state.viewAlram = !state.viewAlram;
+	}
 }
 
 const actions = {
@@ -25,6 +29,9 @@ const actions = {
 			console.log('err', e);
 		}
 	},
+	is_alram_show ({ commit }) {
+		commit('IS_ALRAM_SHOW');
+	}
 }
 
 const getters = {

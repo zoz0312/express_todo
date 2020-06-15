@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="$store.state.alram.viewAlram">
 		<b-card>
 			<b-card-body
         id="nav-scroller"

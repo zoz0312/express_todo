@@ -1,13 +1,19 @@
 <template>
-	<div id="app">
-		<Alert />
+	<div>
 		<Top />
-		<SelectTodo />
+		<b-container id="app">
+			<AlramList />
+			<TodoCardDetail />
+			<Alert />
+			<SelectTodo />
+		</b-container>
 	</div>
 </template>
 
 <script>
 import Top from './components/Top.vue'
+import AlramList from './components/Alram/AlramList.vue';
+import TodoCardDetail from './components/TodoCardDetail.vue';
 import SelectTodo from './components/SelectTodo.vue'
 import Alert from './components/Alert.vue'
 
@@ -15,6 +21,8 @@ export default {
 	name: 'App',
 	components: {
 		Top,
+		AlramList,
+		TodoCardDetail,
 		SelectTodo,
 		Alert,
 	}
