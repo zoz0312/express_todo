@@ -2,25 +2,11 @@
 	<b-card
 		class="text-center todo-card"
 		:bg-variant="bgVal"
-		@click="showDetail()"
 		no-body>
     <template v-slot:header>
-			<b-row>
-				<b-col cols="9" class="mr-auto">
-					<h4 class="mb-0">
-						{{ item.title }}
-					</h4>
-				</b-col>
-				<b-col cols="3" class="">
-					<b-icon
-						font-scale="2"
-						:icon="iconStr"
-						@mouseover="iconStr = 'x-square-fill'"
-						@mouseout="iconStr = 'x-square'"
-						@click="deleteTodo()">
-					</b-icon>
-				</b-col>
-			</b-row>
+			<h4 class="mb-0">
+				{{ item.title }}
+			</h4>
     </template>
 		<b-card-body>
 			<b-card-text>
@@ -47,6 +33,22 @@
 				</b-row>
 			</b-list-group-item>
     </b-list-group>
+		<template v-slot:footer>
+			<div>
+				<b-button-group class="float-right">
+					<b-button
+						variant="primary"
+						@click="showDetail()">
+						수정하기
+					</b-button>
+					<b-button
+						variant="warning"
+						@click="deleteTodo()">
+						삭제하기
+					</b-button>
+				</b-button-group>
+			</div>
+		</template>
 	</b-card>
 </template>
 

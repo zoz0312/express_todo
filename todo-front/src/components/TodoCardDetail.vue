@@ -18,13 +18,15 @@
 			<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
 		</b-card-text>
 		<template v-slot:modal-footer>
-			<div class="w-100 float-right">
-				<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType === 'insert' ? '생성' : '수정' }}</b-button>
-				<b-button
-					variant="primary"
-					@click="$store.dispatch('view_type', false)">
-					Close
-				</b-button>
+			<div class="w-100">
+				<b-button-group class="float-right">
+					<b-button href="#" variant="primary" @click="todoSubmit()">{{ $store.state.todo.viewType === 'insert' ? '생성' : '수정' }}</b-button>
+					<b-button
+						variant="primary"
+						@click="$store.dispatch('view_type', false)">
+						닫기
+					</b-button>
+				</b-button-group>
 			</div>
 		</template>
   </b-modal>
