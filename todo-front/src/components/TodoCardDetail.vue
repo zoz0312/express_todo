@@ -6,16 +6,43 @@
 		content-class="shadow"
 		title="TODO 작성">
 		<b-card-text>
-			<b-form-input v-model="$store.state.todo.title" placeholder="제목을 입력해주세요."></b-form-input>
-			<b-form-textarea
-				id="textarea"
-				v-model="$store.state.todo.contents"
-				placeholder="내용을 입력해주세요."
-				rows="3"
-				max-rows="6"
-			></b-form-textarea>
-			<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
-			<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
+			<b-row class="mb-2">
+				<b-col sm="3">제목</b-col>
+				<b-col sm="9">
+					<b-form-input v-model="$store.state.todo.title" placeholder="제목을 입력해주세요."></b-form-input>
+				</b-col>
+			</b-row>
+			<b-row class="mb-2">
+				<b-col sm="3">내용</b-col>
+				<b-col sm="9">
+					<b-form-textarea
+						id="textarea"
+						v-model="$store.state.todo.contents"
+						placeholder="내용을 입력해주세요."
+						rows="3"
+						max-rows="6"
+					></b-form-textarea>
+				</b-col>
+			</b-row>
+			<b-row class="mb-2">
+				<b-col sm="3">마감 기한</b-col>
+				<b-col sm="9">
+					<b-form-datepicker id="example-datepicker" v-model="$store.state.todo.dueDate" class="mb-2"></b-form-datepicker>
+				</b-col>
+			</b-row>
+			<b-row class="mb-2">
+				<b-col sm="3">상태</b-col>
+				<b-col sm="9">
+					<b-form-select v-model="$store.state.todo.type" :options="options"></b-form-select>
+				</b-col>
+			</b-row>
+			<b-row>
+				<b-col sm="3">우선순위</b-col>
+				<b-col sm="9">
+					<b-form-input id="range-1" v-model="$store.state.todo.depth" type="range" min="0" max="2"></b-form-input>
+					{{ depOptions[$store.state.todo.depth] }}
+				</b-col>
+			</b-row>
 		</b-card-text>
 		<template v-slot:modal-footer>
 			<div class="w-100">
@@ -65,7 +92,8 @@ export default {
 				{ value: 'ongoing', text: '진행중' },
 				{ value: 'complete', text: '완료' },
 				{ value: 'holding', text: '보류' },
-			]
+			],
+			depOptions: [ '높음', '중간', '낮음', ]
 		}
 	},
 	mounted () {
