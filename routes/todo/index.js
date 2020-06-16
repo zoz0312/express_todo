@@ -4,14 +4,15 @@ const router = express.Router();
 const { libs } = require('../../lib');
 const lib = new libs();
 
-const { todoSVali, todoS } = require('./select');
+const { todoS, todoDepthVali, todoDepth } = require('./select');
 const { todoCVali, todoC } = require('./create');
 const { todoUVali, todoU } = require('./update');
 const { todoDVali, todoD } = require('./delete');
 const { alramCount } = require('./alram');
 
-router.post('/select', todoSVali);
 router.post('/select', todoS);
+router.post('/select/depth', todoDepthVali);
+router.post('/select/depth', todoDepth);
 router.post('/create', todoCVali);
 router.post('/create', todoC);
 router.post('/update', todoUVali);

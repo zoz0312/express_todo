@@ -5,11 +5,24 @@
 				<div class="title">Erpper TODO</div>
 			</b-col><b-col md="3" class="ml-auto top-col text-right" align-v="center">
 				<div class="top-btn">
-					<b-button variant="warning" @click="$store.dispatch('is_alram_show')" class="mr-3">
-						<b-icon icon="alarm"></b-icon>
-						{{ $store.state.alram.dueCnt }}
-					</b-button>
-					<b-button variant="info" @click="btnAdd()">추가하기</b-button>
+					<b-button-group>
+						<b-button variant="warning" @click="$store.dispatch('is_alram_show')">
+							<b-icon icon="alarm"></b-icon>
+							{{ $store.state.alram.dueCnt }}
+						</b-button>
+						<b-dropdown size="sm"  variant="light" toggle-class="text-decoration-none" no-caret>
+							<template v-slot:button-content>
+								&#x1f50d;<span class="sr-only">Search</span>
+							</template>
+							<div
+								v-for="(item, idx) in filter"
+								v-bind:key="idx">
+								<b-dropdown-item @click="getTodosDepth(item.value)">{{ item.text }}</b-dropdown-item>
+							</div>
+
+						</b-dropdown>
+						<b-button variant="info" @click="btnAdd()">추가하기</b-button>
+					</b-button-group>
 				</div>
 			</b-col>
 		</b-row>
@@ -23,6 +36,12 @@ export default {
 	},
 	data () {
 		return {
+			filter: [
+				{ text: '우선순위 - 전체', value: -1 },
+				{ text: '우선순위 - 상', value: 0 },
+				{ text: '우선순위 - 중', value: 1 },
+				{ text: '우선순위 - 하', value: 2 },
+			]
 		}
 	},
 	mounted () {
@@ -32,6 +51,9 @@ export default {
 		btnAdd () {
 			this.$store.dispatch('insert_card');
 		},
+		getTodosDepth (val) {
+			this.$store.dispatch('get_todos', val);
+		}
 	}
 }
 </script>

@@ -63,6 +63,26 @@ class libs {
 		}
 		return Array.isArray(val);
 	}
+
+	between (val, min, max) {
+		if (!this.isNum(val)) {
+			return false;
+		}
+		if (!this.isNum(min)) {
+			return false;
+		}
+		if (!this.isNum(max)) {
+			return false;
+		}
+		if (val < min) {
+			return false;
+		}
+		if (max < val) {
+			return false;
+		}
+		return true;
+	}
+
 	findParse (obj) {
 		if (!this.isObj(obj)) {
 			return [];

@@ -50,10 +50,16 @@ const mutations = {
 }
 
 const actions = {
-	async get_todos ({ commit }) {
+	async get_todos ({ commit }, val) {
+		val = val === undefined ? -1 : val;
 		try {
-			const { data } = await axios.post('/todo/select');
-			const items = data.data.items;
+			let res = {};
+			if (val === -1) {
+				res = await axios.post('/todo/select');
+			} else {
+				res = await axios.post(`/todo/select/depth`, { depth: val });
+			}
+			const items = res.data.data.items;
 			const listType = {
 				assign: [],
 				ongoing: [],
