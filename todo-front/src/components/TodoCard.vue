@@ -14,22 +14,28 @@
 			</b-card-text>
     </b-card-body>
 		<b-list-group flush>
-      <b-list-group-item>
+      <b-list-group-item class="py-1">
 				<b-row class="small">
-					<b-col sm="4"><b-icon icon="calendar-date"></b-icon> 생성일</b-col>
-					<b-col sm="8">{{ timeParser(item.createDate) }}</b-col>
+					<b-col sm="4" class="p-0">우선순위</b-col>
+					<b-col sm="8" class="p-0">{{ parseDepth(item.depth) }}</b-col>
 				</b-row>
 			</b-list-group-item>
-      <b-list-group-item>
+      <b-list-group-item class="py-1">
 				<b-row class="small">
-					<b-col sm="4"><b-icon icon="calendar-date"></b-icon> 수정일</b-col>
-					<b-col sm="8">{{ timeParser(item.updateDate) }}</b-col>
+					<b-col sm="4" class="p-0"><b-icon icon="calendar-date"></b-icon> 생성일</b-col>
+					<b-col sm="8" class="p-0">{{ timeParser(item.createDate) }}</b-col>
 				</b-row>
 			</b-list-group-item>
-      <b-list-group-item>
+      <b-list-group-item class="py-1">
 				<b-row class="small">
-					<b-col sm="4"><b-icon icon="calendar-date"></b-icon> 마감일</b-col>
-					<b-col sm="8">{{ timeParser(item.dueDate) }}</b-col>
+					<b-col sm="4" class="p-0"><b-icon icon="calendar-date"></b-icon> 수정일</b-col>
+					<b-col sm="8" class="p-0">{{ timeParser(item.updateDate) }}</b-col>
+				</b-row>
+			</b-list-group-item>
+      <b-list-group-item class="py-1">
+				<b-row class="small">
+					<b-col sm="4" class="p-0"><b-icon icon="calendar-date"></b-icon> 마감일</b-col>
+					<b-col sm="8" class="p-0">{{ timeParser(item.dueDate) }}</b-col>
 				</b-row>
 			</b-list-group-item>
     </b-list-group>
@@ -37,12 +43,14 @@
 			<div>
 				<b-button-group class="float-right">
 					<b-button
+						size="sm"
 						variant="primary"
 						@click="showDetail()">
 						수정하기
 					</b-button>
 					<b-button
-						variant="warning"
+						size="sm"
+						variant="primary"
 						@click="deleteTodo()">
 						삭제하기
 					</b-button>
@@ -112,13 +120,19 @@ export default {
 			} catch (e) {
 				this._alert(`Post Fail - ${e.name} : ${e.message}`, 'danger');
 			}
+		},
+		parseDepth (val) {
+			let text = '';
+			switch (val) {
+				case 0: text = '높음'; break;
+				case 1: text = '중간'; break;
+				case 2: text = '낮음'; break;
+			}
+			return text;
 		}
 	}
 }
 </script>
 
 <style scoped>
-.todo-card {
-	cursor: pointer;
-}
 </style>

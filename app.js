@@ -16,8 +16,8 @@ var sequelize = require('./models').sequelize;   // mysql 시퀄라이저 모델
 sequelize.sync();    //서버가 실행될때 시퀄라이저의 스키마를 DB에 적용시킨다.
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'pug');
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(bodyParser.json());
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(history());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/todo', todoRouter);
 
 /* history URL DEST */
@@ -38,7 +38,6 @@ app.get('/index.html', function(req, res, next) {
 	console.log('GET')
 	res.sendFile(path.join(__dirname, '/public', 'index.html'));
 });
-
 
 app.all('*', (req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');

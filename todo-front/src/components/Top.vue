@@ -38,9 +38,9 @@ export default {
 		return {
 			filter: [
 				{ text: '우선순위 - 전체', value: -1 },
-				{ text: '우선순위 - 상', value: 0 },
-				{ text: '우선순위 - 중', value: 1 },
-				{ text: '우선순위 - 하', value: 2 },
+				{ text: '우선순위 - 높음', value: 0 },
+				{ text: '우선순위 - 중간', value: 1 },
+				{ text: '우선순위 - 낮음', value: 2 },
 			]
 		}
 	},
