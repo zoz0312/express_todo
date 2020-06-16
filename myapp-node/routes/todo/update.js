@@ -11,33 +11,30 @@ const todoUVali = (req, res, next) => {
 	const type = req.body.type;
 	const depth = req.body.depth;
 
-	let flag = false;
-
-	if (!lib.isNum(id)) {
-		flag = true;
-	}
-	if (!lib.isStr(title)) {
-		flag = true;
-	}
-	if (!lib.isStr(contents)) {
-		flag = true;
-	}
-	if (!lib.isStr(dueDate) && dueDate != '') {
-		flag = true;
-	}
-	if (!lib.isStr(type)) {
-		flag = true;
-	}
-	if (!lib.isNum(depth)) {
-		flag = true;
-	}
-
-	if (flag) {
-		lib.errDesc = 'Type Error';
-		res.send(lib.resData);
-	} else {
+	try {
+		if (!lib.isNum(id)) {
+			throw new Error('고유ID Type Error');
+		}
+		if (!lib.isStr(title)) {
+			throw new Error('제목 Type Error');
+		}
+		if (!lib.isStr(contents)) {
+			throw new Error('내용 Type Error');
+		}
+		if (!lib.isStr(dueDate) && dueDate != '') {
+			throw new Error('마감기한 Type Error');
+		}
+		if (!lib.isStr(type)) {
+			throw new Error('상태 Type Error');
+		}
+		if (!lib.isNum(depth)) {
+			throw new Error('우선순위 Type Error');
+		}
 		next();
-	}
+	} catch (e) {
+		lib.errDesc = `[${req.url}] - Type Error - ${e.name}: ${e.message}`;
+		res.send(lib.resData);
+	};
 };
 
 const todoU = async (req, res, next) => {
@@ -58,7 +55,7 @@ const todoU = async (req, res, next) => {
 		});
 		lib.success = true;
 	} catch (e) {
-		lib.errDesc = 'Update Error';
+		lib.errDesc = `[${req.url}] - Update Error - ${e.name}: ${e.message}`;
 	} finally {
 		res.send(lib.resData);
 	}

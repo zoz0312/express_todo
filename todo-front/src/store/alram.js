@@ -28,7 +28,11 @@ const actions = {
 				itemList: inData
 			});
 		} catch (e) {
-			console.log('err', e);
+			commit('POPUP_ALERT', {
+				timer: 3,
+				comments: `Post Fail - ${e.name} : ${e.message} 새로고침 해주세요.`,
+				style: 'danger',
+			});
 		}
 	},
 	is_alram_show ({ commit }) {

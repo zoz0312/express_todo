@@ -6,18 +6,15 @@ const { TodoCard } = require('../../models');
 const todoDVali = (req, res, next) => {
 	const id = req.body.id;
 
-	let flag = false;
-
-	if (!lib.isNum(id)) {
-		flag = true;
-	}
-
-	if (flag) {
-		lib.errDesc = 'Type Error';
-		res.send(lib.resData);
-	} else {
+	try {
+		if (!lib.isNum(id)) {
+			throw new Error('고유ID Type Error');
+		}
 		next();
-	}
+	} catch (e) {
+		lib.errDesc = `[${req.url}] - Type Error - ${e.name}: ${e.message}`;
+		res.send(lib.resData);
+	};
 };
 
 const todoD = async (req, res, next) => {
@@ -31,7 +28,7 @@ const todoD = async (req, res, next) => {
 		});
 		lib.success = true;
 	} catch (e) {
-		lib.errDesc = 'Delete Error';
+		lib.errDesc = `[${req.url}] - Delete Error - ${e.name}: ${e.message}`;
 	} finally {
 		res.send(lib.resData);
 	}

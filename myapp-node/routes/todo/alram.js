@@ -16,7 +16,7 @@ const alramCount = async (req, res, next) => {
 		lib.data = { items: lib.findParse(data) }
 		lib.success = true;
 	} catch (e) {
-		lib.errDesc = `Error ${e.name}: ${e.message}`;
+		lib.errDesc = `[${req.url}] - Error - ${e.name}: ${e.message}`;
 	} finally {
 		res.send(lib.resData);
 	}

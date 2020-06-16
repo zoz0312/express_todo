@@ -65,7 +65,6 @@
 </template>
 
 <script>
-/*eslint no-unused-vars: "error"*/
 import axios from 'axios';
 import CommonMixin from '../mixin';
 
@@ -124,18 +123,26 @@ export default {
 			}
 			try {
 				const viewType = this.$store.state.todo.viewType;
+				let rtn = {};
 				if (viewType === 'insert') {
-					await axios.post('/todo/create', data);
-					this._alert(`생성 되었습니다.`);
+					rtn = await axios.post('/todo/create', data);
 				} else if (viewType === 'fix') {
-					await axios.post('/todo/update', data);
-					this._alert(`수정 되었습니다.`);
+					rtn = await axios.post('/todo/update', data);
+				}
+				if (rtn.data.success) {
+					if (viewType === 'insert') {
+						this._alert(`생성 되었습니다.`);
+					} else if (viewType === 'fix') {
+						this._alert(`수정 되었습니다.`);
+					}
+				} else {
+					this._alert(`${rtn.data.errDesc}`, 'danger');
 				}
 				this.$store.dispatch('view_type', false);
 				this.$store.dispatch('get_todos');
 				this.$store.dispatch('get_alram');
 			} catch (e) {
-				console.log('err', e);
+				this._alert(`Post Fail - ${e.name} : ${e.message}`, 'danger');
 			}
 		},
 	}

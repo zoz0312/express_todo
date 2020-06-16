@@ -101,9 +101,14 @@ export default {
 				return;
 			}
 			try {
-				await axios.post('/todo/delete', { id: this.item.id });
+				const rtn = await axios.post('/todo/delete', { id: this.item.id });
+				if (rtn.data.success) {
+					this._alert(`삭제 되었습니다.`);
+				} else {
+					this._alert(`${rtn.data.errDesc}`, 'danger');
+				}
 			} catch (e) {
-				console.log('err', e);
+				this._alert(`Post Fail - ${e.name} : ${e.message}`, 'danger');
 			}
 		}
 	}

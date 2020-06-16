@@ -1,3 +1,6 @@
+/* eslint-disable */
+/* eslint no-use-before-define: 0 */
+/*eslint no-unreachable: "error"*/
 import axios from 'axios';
 
 const initialState = {
@@ -32,7 +35,7 @@ const mutations = {
 		state.view = true;
 		state.title = obj.title;
 		state.contents = obj.contents;
-		state.dueDate = obj.dueDate;
+		state.dueDate = obj.dueDate === null ? '' : obj.dueDate;
 		state.createDate = obj.createDate;
 		state.updateDate = obj.updateDate;
 		state.type = obj.type;
@@ -62,7 +65,11 @@ const actions = {
 			}
 			commit('INSERT_LIST', listType);
 		} catch (e) {
-			console.log('err', e);
+			commit('POPUP_ALERT', {
+				timer: 3,
+				comments: `Post Fail - ${e.name} : ${e.message} 새로고침 해주세요.`,
+				style: 'danger',
+			});
 		}
 	},
 	update_card ({ commit }, data) {
