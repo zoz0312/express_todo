@@ -135,12 +135,12 @@ export default {
 					} else if (viewType === 'fix') {
 						this._alert(`수정 되었습니다.`);
 					}
+					this.$store.dispatch('get_todos');
+					this.$store.dispatch('get_alram');
 				} else {
 					this._alert(`${rtn.data.errDesc}`, 'danger');
 				}
 				this.$store.dispatch('view_type', false);
-				this.$store.dispatch('get_todos');
-				this.$store.dispatch('get_alram');
 			} catch (e) {
 				this._alert(`Post Fail - ${e.name} : ${e.message}`, 'danger');
 			}

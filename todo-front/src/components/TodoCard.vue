@@ -104,6 +104,8 @@ export default {
 				const rtn = await axios.post('/todo/delete', { id: this.item.id });
 				if (rtn.data.success) {
 					this._alert(`삭제 되었습니다.`);
+					this.$store.dispatch('get_todos');
+					this.$store.dispatch('get_alram');
 				} else {
 					this._alert(`${rtn.data.errDesc}`, 'danger');
 				}
