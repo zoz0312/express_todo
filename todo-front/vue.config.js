@@ -15,7 +15,7 @@ module.exports = {
 		}
 	},
 	*/
-	'outputDir': path.resolve(__dirname, '../myapp-node/public'),
+	'outputDir': path.resolve(__dirname, '../public'),
 	'devServer': {
 		'proxy': {
 			'/api': {
