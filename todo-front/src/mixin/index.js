@@ -18,6 +18,15 @@ export default {
 			const obj = new Date(itemDate.split('.')[0]);
 			return `${obj.getFullYear()}년 ${obj.getMonth() + 1}월 ${obj.getDate()}일`;
 		},
+		parseText (val, type) {
+			const max = type === 'title' ? 10 : 20;
+			let text = val;
+			if (text.length >= max) {
+				text = text.slice(0, max);
+				text += '..';
+			}
+			return text;
+		}
 	}
 }
 

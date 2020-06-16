@@ -20,5 +20,11 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 설명
+Back-End에 뿌려주기 위한 Vue-CLI Project
+
+## vue.config.js
+```
+'outputDir': path.resolve(__dirname, '../public')
+```
+위의 코드를 통해 상위에 Back-End public dir에 뿌려준다.

@@ -17,7 +17,7 @@
 					v-for="(item, idx) in $store.state.alram.itemList"
 					v-bind:key="idx">
 					<b-list-group-item button @click="showDetail(item)">
-						{{ item.title }} / {{ timeParser(item.dueDate) }}
+						{{ parseText(item.title, 'title') }} / {{ timeParser(item.dueDate) }}
 					</b-list-group-item>
 				</b-list-group>
       </b-card-body>

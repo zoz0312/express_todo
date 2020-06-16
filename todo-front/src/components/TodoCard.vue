@@ -129,15 +129,6 @@ export default {
 				case 2: text = '낮음'; break;
 			}
 			return text;
-		},
-		parseText (val, type) {
-			const max = type === 'title' ? 10 : 20;
-			let text = val;
-			if (text.length >= max) {
-				text = text.slice(0, max);
-				text += '..';
-			}
-			return text;
 		}
 	}
 }
