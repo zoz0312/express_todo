@@ -5,7 +5,9 @@
 				<b-col sm="3"
 					v-for="(opt) in options"
 					v-bind:key="opt.value">
-					<b-alert show variant="primary">{{ opt.text }}</b-alert>
+					<div class="type-title">
+						{{ opt.text }}
+					</div>
 					<div
 						class="mb-3"
 						v-for="(item, idx) in $store.state.todo.itemList[opt.value]"
@@ -64,7 +66,11 @@ export default {
 </script>
 
 <style scoped>
-.create-card {
-
+.type-title {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #0073d1;
+	border-bottom: 2px solid #0073d1;
+	margin-bottom: 15px;
 }
 </style>

@@ -3,6 +3,7 @@
 		id="detail-modal"
 		v-model="$store.state.todo.view"
 		hide-backdrop
+		centered
 		content-class="shadow"
 		title="TODO 작성">
 		<b-card-text>
@@ -130,6 +131,7 @@ export default {
 					await axios.post('/todo/update', data);
 					this._alert(`수정 되었습니다.`);
 				}
+				this.$store.dispatch('view_type', false);
 				this.$store.dispatch('get_todos');
 				this.$store.dispatch('get_alram');
 			} catch (e) {

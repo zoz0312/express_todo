@@ -1,5 +1,5 @@
 const initialState = {
-	timer: 5,
+	timer: 3,
 	view: false,
 	comments: '',
 	style: 'success',
@@ -9,7 +9,7 @@ const initialState = {
 const mutations = {
 	POPUP_ALERT (state, obj) {
 		clearTimeout(state.tout);
-		const t = obj.timer === undefined ? 5 : obj.timer;
+		const t = obj.timer === undefined ? 3 : obj.timer;
 		const style = obj.style === undefined ? 'success' : obj.style;
 		state.timer = t;
 		state.view = true;

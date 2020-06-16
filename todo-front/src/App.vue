@@ -1,9 +1,10 @@
 <template>
 	<div>
 		<Top />
-		<b-container id="app">
-			<AlramList />
+		<b-container id="app" class="mt-0">
+			<AlramList class="pt-3" />
 			<TodoCardDetail />
+			<div class="py-2"></div>
 			<Alert />
 			<SelectTodo />
 		</b-container>

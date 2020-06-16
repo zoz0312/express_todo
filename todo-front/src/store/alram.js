@@ -4,6 +4,7 @@ const initialState = {
 	viewAlram: false,
 	dueCnt: 0,
 	itemList: [],
+	aniClass: '',
 }
 
 const mutations = {
@@ -13,6 +14,7 @@ const mutations = {
 	},
 	IS_ALRAM_SHOW (state) {
 		state.viewAlram = !state.viewAlram;
+		state.aniClass = 'animated ' + (state.viewAlram ? 'zoomIn' : 'zoomOut');
 	}
 }
 
