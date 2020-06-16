@@ -9,7 +9,12 @@ const alramCount = async (req, res, next) => {
 		const data = await TodoCard.findAll({
 			attributes: ['id', 'title', 'contents', 'depth', 'type', 'createDate', 'dueDate', 'updateDate'],
 			where: {
-				dueDate: {[lib.Op.lt]: curDate},
+				dueDate: {
+					[lib.Op.and]: [
+						{ [lib.Op.lt]: curDate },
+						{ [lib.Op.ne]: '0000-00-00 00:00:00' },
+					],
+				},
 				type: {[lib.Op.or]: ['assign', 'ongoing']}
 			}
 		});
@@ -22,8 +27,8 @@ const alramCount = async (req, res, next) => {
 	}
 };
 
-
 module.exports = {
 	//todoAVali,
 	alramCount,
 };
+

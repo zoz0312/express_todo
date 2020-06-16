@@ -5,7 +5,7 @@
 				<div class="title">Erpper TODO</div>
 			</b-col><b-col md="3" class="ml-auto top-col text-right" align-v="center">
 				<div class="top-btn">
-					<b-button-group>
+					<b-button-group class="btn-group">
 						<b-button variant="warning" @click="$store.dispatch('is_alram_show')">
 							<b-icon icon="alarm"></b-icon>
 							{{ $store.state.alram.dueCnt }}
@@ -85,6 +85,13 @@ export default {
 	}
 	.top-col {
 		width: 50%;
+	}
+}
+@media (max-width: 992px) {
+	.btn-group > button {
+		font-size: 0.8rem;
+		line-height: 1;
+		padding: .2rem .4rem;
 	}
 }
 </style>

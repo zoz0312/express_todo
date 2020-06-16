@@ -55,8 +55,10 @@ export default {
 	methods: {
 		bgVal (type, due) {
 			if (type === 'assign' || type === 'ongoing') {
-				if (this.curDate > new Date(due)) {
-					return 'warning';
+				if (due != null) {
+					if (this.curDate > new Date(due)) {
+						return 'warning';
+					}
 				}
 			}
 			return '';
