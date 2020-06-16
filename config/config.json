@@ -15,10 +15,10 @@
     "dialect": "mysql",
     "operatorsAliases": false
   },
-  "production": {
+	  "production": {
     "username": "root",
-    "password": "adminme",
-    "database": "upper_korea",
+    "password": "password",
+    "database": "my_database",
     "host": "mysql-server",
     "dialect": "mysql",
     "operatorsAliases": false
