@@ -45,7 +45,7 @@ const todoU = async (req, res, next) => {
 		dueDate: req.body.dueDate,
 		type: req.body.type,
 		depth: req.body.depth,
-		updateDate: new Date(),
+		updateDate: lib.date,
 	}
 	try {
 		await TodoCard.update(data, {

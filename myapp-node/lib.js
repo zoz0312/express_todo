@@ -2,6 +2,9 @@
 
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
+const moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault('Asia/Seoul');
 
 class libs {
 	constructor () {
@@ -24,6 +27,10 @@ class libs {
 		this.data = {};
 		this.success = false;
 		return data;
+	}
+
+	get date () {
+		return moment().format();
 	}
 
 	isNum (val) {

@@ -4,7 +4,7 @@ const lib = new libs();
 const { TodoCard } = require('../../models');
 
 const alramCount = async (req, res, next) => {
-	const curDate = new Date();
+	const curDate = lib.date;
 	try {
 		const data = await TodoCard.findAll({
 			attributes: ['id', 'title', 'contents', 'depth', 'type', 'createDate', 'dueDate', 'updateDate'],
