@@ -2,7 +2,7 @@
   <div class="top">
 		<b-row class="top-row">
 			<b-col md="4" class="top-col">
-				<div class="title">UpperKorea TODO</div>
+				<div class="title">Erpper TODO</div>
 			</b-col><b-col md="3" class="ml-auto top-col text-right" align-v="center">
 				<div class="top-btn">
 					<b-button variant="warning" @click="$store.dispatch('is_alram_show')" class="mr-3">
